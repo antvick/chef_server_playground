@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -u ; set -e
+THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+
+function build_help(){
+cat <<ENDOFHELP
+       run commands for ${THISDIR##*/}
+
+       ./run [cmd]
+
+           setup:       Check dependencies
+           dev:         Run dev environment
+
+ENDOFHELP
+}
+
+function build_dev() {
+    (
+        cd "$THISDIR" && vagrant up
+    )
+}
+
+function run_cmd(){
+    local script=$1
+    shift
+    printf "==== %-10s    ====\n" "$script"
+    "build_$script" "$@" || { echo "$script failed" ; return 2 ; }
+}
+
+function build_default(){
+    run_cmd setup && run_cmd dev
+}
+
+function build_setup(){
+    if ! command -v vboxmanage > /dev/null; then { echo "Missing chef you need to install chefdk" ; exit 5 ; }; fi
+    if ! command -v vagrant > /dev/null; then { echo "Missing berkshelf you need to install it" ; exit 5 ; }; fi
+}
+
+# if targets are passed run them else run the default
+if [[ $# -ge 1 ]] ; then
+    cmd="$1"
+    declare -f "build_$cmd" > /dev/null || { build_help ; exit 1 ; }
+    shift
+    "build_$cmd" "$@"
+else
+    "build_default"
+fi
+
+

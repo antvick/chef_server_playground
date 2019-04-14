@@ -1,0 +1,14 @@
+{
+    "name": "chef-server",
+    "description": "A role to configure a chef-server",
+    "json_class": "Chef::Role",
+    "default_attributes": {},
+    "override_attributes": {},
+    "chef_type": "role",
+    "run_list": [
+        "recipe[chef-server::server_install]",
+        "recipe[chef-server::add_user]",
+        "recipe[chef-server::add_org]",
+        "recipe[chef-server::keys_vagrant]"
+    ]
+}

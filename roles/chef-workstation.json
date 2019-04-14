@@ -1,0 +1,11 @@
+{
+    "name": "chef-workstation",
+    "description": "A role to configure a chef-workstation",
+    "json_class": "Chef::Role",
+    "default_attributes": {},
+    "override_attributes": {},
+    "chef_type": "role",
+    "run_list": [
+        "recipe[chef-server::workstation]"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "id": "users",
+    "dev": {
+        "admin": {
+            "email": "test@test.com",
+            "password": "password"
+        },
+        "users": {
+            "vagrant": {
+                "description": "test admin user for chef server",
+                "first_name": "vagrant",
+                "last_name": "vagrant",
+                "email": "vagrant@vagrant.com",
+                "password": "vagrant"
+            }
+        }
+    }
+}

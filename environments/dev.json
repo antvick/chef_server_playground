@@ -1,0 +1,9 @@
+{
+    "name": "dev",
+    "description": "The chef-server dev environment",
+    "cookbook_versions": {},
+    "json_class": "Chef::Environment",
+    "chef_type": "environment",
+    "default_attributes": {},
+    "override_attributes": {}
+}
