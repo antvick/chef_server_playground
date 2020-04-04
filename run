@@ -34,8 +34,10 @@ function build_default(){
 }
 
 function build_setup(){
-    if ! command -v vboxmanage > /dev/null; then { echo "Missing chef you need to install chefdk" ; exit 5 ; }; fi
-    if ! command -v vagrant > /dev/null; then { echo "Missing berkshelf you need to install it" ; exit 5 ; }; fi
+    if ! command -v vboxmanage > /dev/null; then { echo "Missing virtualbox, you need to install it" ; exit 5 ; }; fi
+    if ! command -v vagrant > /dev/null; then { echo "Missing vagrant you need to install it" ; exit 5 ; }; fi
+    if ! vagrant plugin list | grep vagrant-berkshelf > /dev/null; then { echo "Missing vagrant berkshelf plugin, you need to install it" ; exit 5 ; }; fi
+
 }
 
 # if targets are passed run them else run the default
